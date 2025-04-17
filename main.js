@@ -49,3 +49,16 @@ const analytics = getAnalytics(app);
         console.error("Error consultando datos:", error);
       });
   }
+  
+  // Hacer consulta solo si está logueado
+  function hacerConsulta() {
+    db.collection("datos").get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          console.log(doc.id, " => ", doc.data());
+        });
+      })
+      .catch(error => {
+        console.error("Error consultando datos:", error);
+      });
+  }
